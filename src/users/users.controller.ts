@@ -14,11 +14,13 @@ export class UsersController {
     return this.usersService.findById(req.user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('profile')
   async updateProfile(@Req() req, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.updateProfile(req.user.id, updateUserDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('change-password')
   async changePassword(
     @Req() req,

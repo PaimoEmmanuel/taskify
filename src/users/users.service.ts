@@ -45,9 +45,6 @@ export class UsersService {
     const { currentPassword, newPassword } = changePasswordDto;
     const user = await this.findById(id);
 
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
     const passwordMatch = this.authService.passwordMatch(
       currentPassword,
       user.password,
